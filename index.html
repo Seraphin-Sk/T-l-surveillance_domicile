@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Télésurveillance à Domicile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom animations */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .fade-in.show {
+            opacity: 1;
+        }
+        .slide-up {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+        }
+        .slide-up.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .btn-hover:hover {
+            background-color: #2563eb;
+            color: #fff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-3xl font-bold">Télésurveillance</h1>
+            <ul class="flex space-x-4 text-white">
+                <li><a href="#home" class="hover:text-gray-300">Accueil</a></li>
+                <li><a href="#features" class="hover:text-gray-300">Fonctionnalités</a></li>
+                <li><a href="#about" class="hover:text-gray-300">À propos</a></li>
+                <li><a href="#contact" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="text-center py-12 bg-blue-500 text-white">
+        <h2 class="text-5xl font-bold fade-in">Application de Télésurveillance à Domicile</h2>
+        <p class="mt-4 text-2xl">Surveillez les paramètres vitaux de vos patients à distance et améliorez leur suivi médical.</p>
+        <a href="#features" class="mt-6 inline-block bg-white text-blue-500 py-3 px-6 rounded-lg font-bold btn-hover">En savoir plus</a>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-12 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8 slide-up">Fonctionnalités</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg slide-up">
+                    <h3 class="text-2xl font-bold">Suivi des données vitales</h3>
+                    <p class="mt-4">Suivez les paramètres de santé de vos patients en temps réel grâce aux dispositifs connectés.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg slide-up">
+                    <h3 class="text-2xl font-bold">Alertes automatiques</h3>
+                    <p class="mt-4">Recevez des alertes en cas de détection de valeurs anormales dans les paramètres vitaux.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg slide-up">
+                    <h3 class="text-2xl font-bold">Communication directe</h3>
+                    <p class="mt-4">Facilitez la communication entre les patients et les médecins via l'application mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-gray-200 py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold fade-in">À propos de l'application</h2>
+            <p class="mt-6 text-xl">Cette application utilise des technologies modernes telles que les dispositifs IoT, Node.js et MongoDB pour offrir un suivi médical fiable et sécurisé.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center slide-up">Contact</h2>
+            <form action="#" method="POST" class="mt-8 max-w-lg mx-auto bg-gray-100 p-6 rounded-lg shadow-lg slide-up">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-bold">Nom</label>
+                    <input type="text" id="name" name="name" class="w-full border-2 border-gray-200 p-3 rounded-lg" placeholder="Votre nom" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-bold">Email</label>
+                    <input type="email" id="email" name="email" class="w-full border-2 border-gray-200 p-3 rounded-lg" placeholder="Votre email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700 font-bold">Message</label>
+                    <textarea id="message" name="message" class="w-full border-2 border-gray-200 p-3 rounded-lg" rows="4" placeholder="Votre message" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg font-bold btn-hover">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white text-center py-4">
+        <p>&copy; 2024 Application de Télésurveillance. Tous droits réservés.</p>
+    </footer>
+
+    <!-- JavaScript for animations -->
+    <script>
+        // Fade-in effect
+        document.addEventListener("DOMContentLoaded", function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                setTimeout(() => {
+                    el.classList.add('show');
+                }, 300);
+            });
+
+            const slideElements = document.querySelectorAll('.slide-up');
+            slideElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('show');
+                }, 500 * (index + 1));  // Delay each element for a cascading effect
+            });
+        });
+    </script>
+
+</body>
+</html>
