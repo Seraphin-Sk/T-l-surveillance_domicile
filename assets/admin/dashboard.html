@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Télésurveillance</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            width: 250px;
+            background-color: #1e3a8a;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar a {
+            padding: 15px;
+            display: block;
+            color: white;
+            font-weight: bold;
+        }
+        .sidebar a:hover {
+            background-color: #2563eb;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <div class="sidebar fixed top-0 left-0 h-full">
+        <h1 class="text-2xl font-bold text-center py-6">Dashboard</h1>
+        <a href="../html/vital-data.html">Suivi des données vitales</a>
+        <a href="../html/alerts.html">Alertes automatiques</a>
+        <a href="../html/communication.html">Communication</a>
+        <a href="../html/about.html">À propos</a>
+        <a href="../html/contact.html">Contact</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2 class="text-4xl font-bold mb-6">Bienvenue sur votre Dashboard</h2>
+
+        <!-- Suivi des données vitales -->
+        <section id="vital-data" class="mb-12">
+            <h3 class="text-2xl font-bold">Suivi des données vitales</h3>
+            <p class="mt-2">Visualisez les données de santé en temps réel pour chaque patient.</p>
+            <canvas id="vitalDataChart" class="mt-4"></canvas>
+        </section>
+
+        <!-- Alertes -->
+        <section id="alerts" class="mb-12">
+            <h3 class="text-2xl font-bold">Alertes</h3>
+            <p class="mt-2">Visualisez les alertes déclenchées par des anomalies détectées.</p>
+            <div id="alertMessage" class="mt-4 bg-red-100 text-red-600 p-4 rounded-lg hidden">Alerte : Paramètres vitaux anormaux détectés.</div>
+            <button id="simulateAlertBtn" class="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg">Simuler une alerte</button>
+        </section>
+
+        <!-- Communication -->
+        <section id="communication" class="mb-12">
+            <h3 class="text-2xl font-bold">Communication avec les médecins</h3>
+            <form id="messageForm" class="mt-4 bg-white p-6 rounded-lg shadow-lg">
+                <label for="message" class="block mb-2 font-bold">Envoyer un message</label>
+                <textarea id="message" class="w-full border-2 border-gray-200 p-3 rounded-lg" rows="4" placeholder="Tapez votre message ici..."></textarea>
+                <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg">Envoyer</button>
+            </form>
+            <p id="confirmationMessage" class="mt-4 text-green-600 hidden">Message envoyé avec succès.</p>
+        </section>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Simulate data for the vital chart
+        const ctx = document.getElementById('vitalDataChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jour 1', 'Jour 2', 'Jour 3', 'Jour 4', 'Jour 5'],
+                datasets: [
+                    {
+                        label: 'Pression Artérielle (mmHg)',
+                        data: [120, 122, 119, 121, 125],
+                        borderColor: 'rgb(75, 192, 192)',
+                        fill: false
+                    },
+                    {
+                        label: 'Fréquence Cardiaque (bpm)',
+                        data: [75, 78, 77, 79, 80],
+                        borderColor: 'rgb(255, 99, 132)',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+
+        // Simulate alert
+        document.getElementById('simulateAlertBtn').addEventListener('click', function() {
+            document.getElementById('alertMessage').classList.remove('hidden');
+        });
+
+        // Message form
+        document.getElementById('messageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('confirmationMessage').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
